@@ -1,8 +1,11 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
-import lombok.*;
-import med.voll.api.endereco.Endereco;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import med.voll.api.domain.endereco.Endereco;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -17,7 +20,9 @@ public class Medico {
     private Long id;
     private String nome;
     private String email;
+
     private String telefone;
+
     private String crm;
 
     @Enumerated(EnumType.STRING)
@@ -48,6 +53,7 @@ public class Medico {
         if (dados.endereco() != null) {
             this.endereco.atualizarInformacoes(dados.endereco());
         }
+
     }
 
     public void excluir() {
