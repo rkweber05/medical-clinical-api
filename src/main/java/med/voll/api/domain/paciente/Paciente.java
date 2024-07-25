@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.endereco.Endereco;
+
+import java.util.Collection;
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
@@ -15,8 +18,7 @@ import med.voll.api.domain.endereco.Endereco;
 @EqualsAndHashCode(of = "id")
 public class Paciente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
@@ -54,5 +56,16 @@ public class Paciente {
 
     public void excluir() {
         this.ativo = false;
+    }
+
+    @OneToMany(mappedBy = "paciente")
+    private Collection<Consulta> consulta;
+
+    public Collection<Consulta> getConsulta() {
+        return consulta;
+    }
+
+    public void setConsulta(Collection<Consulta> consulta) {
+        this.consulta = consulta;
     }
 }
