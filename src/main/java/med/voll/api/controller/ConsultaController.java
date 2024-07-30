@@ -23,6 +23,6 @@ public class ConsultaController {
     public ResponseEntity agendar (@RequestBody @Valid DadosAgendamentoConsulta dados) {
         agenda.agendar(dados);
 
-        return ResponseEntity.ok(new DadosDetalhamentoConsulta(null, null, null, null));
+        return ResponseEntity.ok(dados);
     }
 }
